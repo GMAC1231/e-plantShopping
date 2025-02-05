@@ -1,12 +1,16 @@
-import React, { useState,useEffect } from 'react';
-import './ProductList.css'
-import { useDispatch } from 'react-redux';
-import { addItem } from './CartSlice';
+
+import React, { useState, useEffect } from 'react';
+import './ProductList.css';
+import CartItem from './CartItem';
+import { useDispatch } from "react-redux";
+import { addItem } from "../store/CartSlice";
+
+
 function ProductList() {
-    const dispatch = useDispatch();
-    const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false);
+    const [showCart, setShowCart] = useState(false); 
+    const [showPlants, setShowPlants] = useState(false); 
     const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -236,10 +240,7 @@ function ProductList() {
    }
    const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
-    setAddedToCart((prevState) => ({
-        ...prevState,
-        [plant.name]: true,
-    }));
+    setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true }));
 };
 
 const handleCartClick = (e) => {
@@ -262,7 +263,7 @@ return (
     <div>
         <div className="navbar">
             <div className="luxury">
-                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="logo" />
+                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
                 <a href="/" style={{ textDecoration: 'none' }}>
                     <div>
                         <h3>Paradise Nursery</h3>
