@@ -1,16 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ProductList.css';
 import CartItem from './CartItem';
-import { useDispatch } from "react-redux";
-import { addItem } from "../store/CartSlice";
-
+import { useDispatch } from 'react-redux';
+import { addItem } from './CartSlice';
 
 function ProductList() {
-    const [showCart, setShowCart] = useState(false); 
-    const [showPlants, setShowPlants] = useState(false); 
-    const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
+    const [showCart, setShowCart] = useState(false);
+    const [addedToCart, setAddedToCart] = useState({});
+
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -238,32 +236,29 @@ function ProductList() {
     fontSize: '30px',
     textDecoration: 'none',
    }
-   const handleAddToCart = (plant) => {
-    dispatch(addItem(plant));
-    setAddedToCart((prevState) => ({ ...prevState, [plant.name]: true }));
-};
-
-const handleCartClick = (e) => {
+   const handleCartClick = (e) => {
     e.preventDefault();
-    setShowCart(true);
+    setShowCart(true); // Set showCart to true when cart icon is clicked
 };
-
 const handlePlantsClick = (e) => {
     e.preventDefault();
-    setShowPlants(true);
-    setShowCart(false);
+    setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
+    setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
+const handleAddToCart = (plant) => {
+    dispatch(addItem(plant));
+    setAddedToCart((prevState) => ({
+        ...prevState,
+        [plant.name]: true,
+    }));
 };
 
 return (
     <div>
         <div className="navbar">
             <div className="luxury">
-                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
+                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="logo" />
                 <a href="/" style={{ textDecoration: 'none' }}>
                     <div>
                         <h3>Paradise Nursery</h3>
@@ -272,8 +267,8 @@ return (
                 </a>
             </div>
             <div>
-                <a href="#" onClick={handlePlantsClick}>Plants</a>
-                <a href="#" onClick={handleCartClick}><h1 className='cart'>🛒</h1></a>
+                <a href="#" onClick={() => setShowCart(false)}>Plants</a>
+                <a href="#" onClick={() => setShowCart(true)}><h1 className='cart'>🛒</h1></a>
             </div>
         </div>
         {!showCart ? (
@@ -302,7 +297,7 @@ return (
                 ))}
             </div>
         ) : (
-            <CartItem onContinueShopping={handleContinueShopping} />
+            <CartItem onContinueShopping={() => setShowCart(false)} />
         )}
     </div>
 );
