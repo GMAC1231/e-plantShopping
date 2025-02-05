@@ -11,6 +11,8 @@
     "predeploy": "npm run build",
 "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://github.com/GMAC1231/e-plantShopping",
+
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "react": "^18.2.0",
