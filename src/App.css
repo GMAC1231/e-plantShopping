@@ -13,6 +13,15 @@
   background-color: #f8f8f8;
 }
 
+.luxury img {
+  width: 132px;
+  height: 132px;
+  object-fit: contain;
+  padding: 14px;
+  background: white;
+  border-radius: 50%;
+}
+
 .background-image {
   position: absolute;
   top: 0;
